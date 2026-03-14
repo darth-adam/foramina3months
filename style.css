@@ -1,0 +1,199 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+font-family:Arial, Helvetica, sans-serif;
+background:#f8cfd5;
+text-align:center;
+padding:20px;
+}
+
+.title{
+color:#d63b4b;
+margin-bottom:30px;
+}
+
+.scene{
+width:100%;
+max-width:360px;
+height:260px;
+position:relative;
+}
+
+/* envelope body */
+
+.envelope{
+position:absolute;
+bottom:0;
+width:100%;
+height:170px;
+background:#f3a3af;
+border-radius:12px;
+box-shadow:0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* triangle flap */
+
+.flap{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#e63950;
+clip-path:polygon(0 0,100% 0,50% 70%);
+transform-origin:top;
+transition:0.7s;
+z-index:3;
+}
+
+/* letter */
+
+.letter{
+position:absolute;
+left:50%;
+bottom:20px;
+transform:translate(-50%,120px);
+width:85%;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 10px 20px rgba(0,0,0,0.15);
+
+opacity:0;
+pointer-events:none;
+
+transition:0.7s;
+
+z-index:2;
+}
+
+.letter p{
+font-size:15px;
+line-height:1.4;
+margin-bottom:15px;
+}
+
+/* open animation */
+
+.envelope.open .flap{
+transform:rotateX(180deg);
+}
+
+.envelope.open .letter{
+opacity:1;
+pointer-events:auto;
+transform:translate(-50%,-120px);
+z-index:6;
+}
+
+/* buttons */
+
+.controls{
+margin-top:40px;
+}
+
+.controls button{
+padding:12px 25px;
+font-size:16px;
+margin:6px;
+border-radius:8px;
+cursor:pointer;
+}
+
+#openBtn{
+background:#e63950;
+border:none;
+color:white;
+}
+
+#resetBtn{
+background:transparent;
+border:2px solid #e63950;
+color:#e63950;
+}
+
+#nextLetter{
+background:#e63950;
+border:none;
+color:white;
+padding:10px 16px;
+border-radius:6px;
+cursor:pointer;
+}
+
+/* hearts */
+
+#hearts{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+}
+
+.heart{
+position:absolute;
+width:14px;
+height:14px;
+background:#e63950;
+transform:rotate(45deg);
+animation:float 3s linear forwards;
+}
+
+.heart::before,
+.heart::after{
+content:'';
+position:absolute;
+width:14px;
+height:14px;
+background:#e63950;
+border-radius:50%;
+}
+
+.heart::before{
+top:-7px;
+left:0;
+}
+
+.heart::after{
+left:-7px;
+top:0;
+}
+
+@keyframes float{
+
+0%{
+opacity:1;
+transform:translateY(0) rotate(45deg);
+}
+
+100%{
+opacity:0;
+transform:translateY(-220px) rotate(45deg);
+}
+
+}
+
+/* mobile */
+
+@media (max-width:500px){
+
+.title{
+font-size:22px;
+}
+
+.scene{
+height:240px;
+}
+
+}
